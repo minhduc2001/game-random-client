@@ -1,0 +1,22 @@
+.div-content {
+  display: flex;
+  justify-content: center;
+
+  .div-content-children {
+    margin-top: -52px;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    max-width: fit-content;
+
+    .content-container {
+      padding: 30px 25px 40px;
+      position: relative;
+      z-index: 101;
+      background-color: white;
+      border-radius: 5px;
+    }
+  }
+}

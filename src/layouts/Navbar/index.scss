@@ -1,0 +1,85 @@
+.navbar {
+  width: 100%;
+  padding: 5px 0;
+  text-align: center;
+  background: #e28637;
+  border-bottom: 10px solid #fff;
+  height: 170px;
+
+  background-image: url('https://nsocltx.com/frontend-user/assets/img/bg-head.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 1170px;
+
+    .ant-menu-overflow {
+      background: transparent !important;
+      border-bottom: unset;
+      display: flex;
+      gap: 10px;
+      margin-top: 17px;
+
+      .ant-menu-overflow-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        min-width: 93px;
+        height: 82px;
+        // padding: 20px;
+        border-radius: 5px;
+        position: relative;
+        background-color: #ad41053d;
+        border: 2px solid #0000000a;
+
+        .ant-menu-title-content {
+          margin: unset;
+        }
+
+        &:hover {
+          background: #ad4105;
+          border-color: transparent;
+          color: white;
+        }
+
+        &.ant-menu-item-selected {
+          background: #ad4105;
+          border-color: transparent;
+        }
+
+        &.ant-menu-item-selected::after {
+          //   border: none;
+
+          content: '';
+          display: block;
+          border-left: 20px solid transparent;
+          border-right: 20px solid transparent;
+          border-top: 10px solid transparent;
+          border-top-color: #ad4105;
+          position: absolute;
+          top: 102%;
+          left: 50%;
+          right: 100%;
+          margin-left: -16px;
+          background: transparent;
+        }
+
+        &.ant-menu-item:hover::after {
+          border-bottom: none;
+          background: transparent;
+        }
+
+        &.ant-menu-item::after {
+          border-bottom: none;
+          background: transparent;
+        }
+      }
+    }
+  }
+}
