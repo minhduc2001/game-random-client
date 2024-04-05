@@ -32,9 +32,9 @@ jobs:
 
       - name: Deploy application
         uses: ssh-actions/ssh-deploy@v1
-          with:
-            ssh_key: ${{ secrets.SSH_KEY }}
-            host: ${{ secrets.SERVER_HOST }}
-            username: ${{ secrets.SERVER_USERNAME }}
-            port: ${{ secrets.SERVER_PORT }}
-            target: /var/www/game_random_client
+        with:
+          ssh_key: ${{ secrets.SSH_KEY }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          port: ${{ secrets.SERVER_PORT }}
+          target: /var/www/game_random_client
