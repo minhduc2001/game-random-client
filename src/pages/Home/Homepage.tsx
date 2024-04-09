@@ -3,6 +3,7 @@ import Helmet from '../../components/Helmet';
 import AsyncWrapper from '../../layouts/AsyncWrapper';
 import './index.scss';
 import { MdLogin } from 'react-icons/md';
+import Marquee from 'react-fast-marquee';
 
 function Homepage() {
   const isFetching = false;
@@ -19,8 +20,8 @@ function Homepage() {
             <Button>Xem hướng dẫn</Button>
             <Button>Nhóm Zalo</Button>
           </div>
-          <Row gutter={22} className='row-data' wrap>
-            <Col span={12}>
+          <Row gutter={[12, 55]} className='row-data' wrap>
+            <Col xs={24} sm={12}>
               <div className='row-data-game'>
                 <span className='row-header'>
                   <>Game (Thường)</>
@@ -28,7 +29,7 @@ function Homepage() {
                 <Divider></Divider>
               </div>
             </Col>
-            <Col span={12}>
+            <Col xs={24} sm={12}>
               <div className='row-data-game'>
                 <span className='row-header'>
                   <p>Game</p>
@@ -52,6 +53,26 @@ function Homepage() {
               </div>
             </Col>
           </Row>
+
+          <div className='table-response'>
+            <h1 className=''>LỊCH SỬ ĐẶT CƯỢC</h1>
+            <Marquee play direction='left' className='marquee'>
+              <p className='text-[#E60000]'>
+                <strong>
+                  Lưu ý: Web chỉ sử dụng cho mục đích giải trí và phục vụ nhu
+                  cầu tìm hiểu học hỏi về website socket, ...{' '}
+                </strong>
+              </p>
+
+              <p className='text-[#0066cc]'>
+                <strong>Tỉ lệ : x1.96 ( Max : 500m xu )</strong>
+              </p>
+
+              <p className='text-[#008a00]'>
+                <strong>Nạp xu Lên web để chơi cho an toàn và ổn định.</strong>
+              </p>
+            </Marquee>
+          </div>
         </div>
       </div>
     </>
