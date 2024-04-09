@@ -155,6 +155,63 @@
           margin: 0 100px;
         }
       }
+
+      .table-data {
+        width: 100%;
+      }
     }
+  }
+}
+
+.table-global {
+  .ant-pagination-prev {
+    display: none !important;
+  }
+
+  .ant-pagination-item {
+    display: none !important;
+  }
+
+  .ant-pagination-next {
+    display: none;
+  }
+
+  .ant-pagination-options {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    .ant-select {
+      height: 34px;
+    }
+
+    .ant-pagination-options {
+      display: flex;
+    }
+
+    .ant-select-selector {
+      // height: 34px;
+      padding: 15px 20px !important;
+      width: 200px !important;
+
+      display: flex !important;
+      align-items: center !important;
+    }
+
+    .ant-select-arrow {
+      color: #111;
+    }
+
+    .ant-select-selection-search {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 4px;
+    }
+  }
+
+  .ant-pagination-options-quick-jumper {
+    height: 34px !important;
+    display: flex;
+    align-items: center;
   }
 }
