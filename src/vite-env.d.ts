@@ -9,6 +9,8 @@ interface ErrorBoundaryState {
   errorInfo: ErrorInfo | null;
 }
 
+type MenuItem = Required<MenuProps>["items"][number];
+
 interface AsyncWrapperProps {
   loading: boolean;
   fulfilled: boolean;

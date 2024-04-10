@@ -445,10 +445,6 @@ const dataTable: DataType[] = [
 ];
 
 function Homepage() {
-  const isFetching = false;
-  const data: any = { a: 1 };
-  const error = null;
-
   const [tableParams, setTableParams] = useState<IChangeTable>({
     page: 1,
     pageSize: 10,
@@ -458,7 +454,7 @@ function Homepage() {
     {
       title: "Máy chủ",
       dataIndex: "server",
-      render: (value) => `Kunai`,
+      render: (value) => value,
       align: "center",
       width: 80,
     },
