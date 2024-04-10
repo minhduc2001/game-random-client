@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 import Spinner from "./components/Spinner";
 import Layout from "./layouts";

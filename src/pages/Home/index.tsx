@@ -3,7 +3,7 @@ import Helmet from "../../components/Helmet";
 
 import { MdLogin } from "react-icons/md";
 import Marquee from "react-fast-marquee";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TableGlobal, {
   IChangeTable,
 } from "../../components/TableGlobal/TableGlobal";
@@ -449,6 +449,12 @@ function Homepage() {
     page: 1,
     pageSize: 10,
   });
+
+  useEffect(() => {
+    if (tableParams) {
+      console.log(tableParams);
+    }
+  }, []);
 
   const columns: TableColumnsType<DataType> = [
     {
