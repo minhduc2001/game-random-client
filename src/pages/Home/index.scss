@@ -6,11 +6,7 @@
   max-width: 1170px;
   width: 100vw;
 
-  font:
-    400 14px/1.6 Tahoma,
-    Verdana,
-    Helvetica,
-    sans-serif;
+  font: 400 14px/1.6 Tahoma, Verdana, Helvetica, sans-serif;
 
   .content {
     min-height: 455px;
@@ -180,12 +176,11 @@
     display: flex;
     width: 100%;
     justify-content: flex-end;
+    flex-wrap: wrap;
+
+    gap: 12px;
     .ant-select {
       height: 34px;
-    }
-
-    .ant-pagination-options {
-      display: flex;
     }
 
     .ant-select-selector {
