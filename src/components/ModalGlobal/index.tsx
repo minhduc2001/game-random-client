@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import { Button, Modal } from "antd";
 import { TextProps } from "antd/es/typography/Text";
 import classNames from "classnames";
-import { ReactNode } from "react";
 
 interface IModalGlobalProps {
   open?: boolean;
