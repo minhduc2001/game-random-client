@@ -19,34 +19,36 @@
     // box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
     // background-color: white;
 
-    .group-btn {
+    .groupBtn {
       display: flex;
       justify-content: center;
       gap: 8px;
 
-      .ant-btn {
-        padding: 10px 16px;
-        height: 50px;
-        font-size: 18px;
-        line-height: 1.33;
-        width: 200px;
-      }
+      :global {
+        .ant-btn {
+          padding: 10px 16px;
+          height: 50px;
+          font-size: 18px;
+          line-height: 1.33;
+          width: 200px;
+        }
 
-      .ant-btn:first-child {
-        color: #fff;
-        background-color: #5bc0de;
-        border-color: #46b8da;
-      }
+        .ant-btn:first-child {
+          color: #fff;
+          background-color: #5bc0de;
+          border-color: #46b8da;
+        }
 
-      .ant-btn:last-child {
-        color: #fff;
-        background-color: #5cb85c;
-        border-color: #4cae4c;
+        .ant-btn:last-child {
+          color: #fff;
+          background-color: #5cb85c;
+          border-color: #4cae4c;
+        }
       }
     }
 
-    .row-data {
-      .row-data-game {
+    .rowData {
+      .rowDataGame {
         width: 100%;
         border: 1px solid #ad4105;
         height: 400px;
@@ -55,7 +57,7 @@
         align-items: center;
         border-radius: 4px;
 
-        .row-header {
+        .rowHeader {
           width: 99.2%;
           height: 42px;
           color: #fff;
@@ -69,14 +71,14 @@
         }
       }
 
-      .panel-body {
+      .panelBody {
         width: 100%;
         padding: 15px;
         padding-bottom: 0;
 
         display: flex;
         justify-content: center;
-        .alert-danger {
+        .alertDanger {
           background-color: #f2dede;
           border-color: #ebccd1;
           color: #a94442;
@@ -92,7 +94,7 @@
           flex-direction: column;
           align-items: center;
 
-          .btn-login {
+          .btnLogin {
             height: 23.5px;
             margin-top: 5px;
             > a {
@@ -131,7 +133,7 @@
       }
     }
 
-    .table-response {
+    .tableResponse {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -152,61 +154,63 @@
         }
       }
 
-      .table-data {
+      .tableData {
         width: 100%;
       }
     }
   }
 }
 
-.table-global {
-  .ant-pagination-prev {
-    display: none !important;
-  }
-
-  .ant-pagination-item {
-    display: none !important;
-  }
-
-  .ant-pagination-next {
-    display: none;
-  }
-
-  .ant-pagination-options {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-
-    gap: 12px;
-    .ant-select {
-      height: 34px;
+.table__disable__paginate {
+  :global {
+    .ant-pagination-prev {
+      display: none !important;
     }
 
-    .ant-select-selector {
-      // height: 34px;
-      padding: 15px 20px !important;
-      width: 200px !important;
-
-      display: flex !important;
-      align-items: center !important;
+    .ant-pagination-item {
+      display: none !important;
     }
 
-    .ant-select-arrow {
-      color: #111;
+    .ant-pagination-next {
+      display: none;
     }
 
-    .ant-select-selection-search {
-      height: 100%;
+    .ant-pagination-options {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+
+      gap: 12px;
+      .ant-select {
+        height: 34px;
+      }
+
+      .ant-select-selector {
+        // height: 34px;
+        padding: 15px 20px !important;
+        width: 200px !important;
+
+        display: flex !important;
+        align-items: center !important;
+      }
+
+      .ant-select-arrow {
+        color: #111;
+      }
+
+      .ant-select-selection-search {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+      }
+    }
+
+    .ant-pagination-options-quick-jumper {
+      height: 34px !important;
       display: flex;
       align-items: center;
-      padding: 0 4px;
     }
-  }
-
-  .ant-pagination-options-quick-jumper {
-    height: 34px !important;
-    display: flex;
-    align-items: center;
   }
 }

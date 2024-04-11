@@ -3,11 +3,12 @@ import Helmet from "../../components/Helmet";
 
 import { MdLogin } from "react-icons/md";
 import Marquee from "react-fast-marquee";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TableGlobal, {
   IChangeTable,
 } from "../../components/TableGlobal/TableGlobal";
-import "./index.scss";
+import styles from "./index.module.scss";
+import ModalNotificationHome from "./components/ModalNotificationHome";
 
 interface DataType {
   user_id: number | null;
@@ -444,13 +445,16 @@ const dataTable: DataType[] = [
   },
 ];
 
-function Homepage() {
+const Homepage = () => {
   const [tableParams, setTableParams] = useState<IChangeTable>({
     page: 1,
     pageSize: 10,
   });
 
+  const refModalNotificationHome: any = useRef();
+
   useEffect(() => {
+    refModalNotificationHome.current.onOpen();
     if (tableParams) {
       console.log(tableParams);
     }
@@ -511,33 +515,33 @@ function Homepage() {
   return (
     <>
       <Helmet title="Trang chủ" description="Hệ thống chơi game" />
-      <div className="home">
-        <div className="content">
+      <div className={styles.home}>
+        <div className={styles.content}>
           <div></div>
-          <div className="group-btn">
+          <div className={styles.groupBtn}>
             <Button>Xem hướng dẫn</Button>
             <Button>Nhóm Zalo</Button>
           </div>
-          <Row gutter={[12, 55]} className="row-data" wrap>
+          <Row gutter={[12, 55]} className={styles.rowData} wrap>
             <Col xs={24} sm={12}>
-              <div className="row-data-game">
-                <span className="row-header">
+              <div className={styles.rowDataGame}>
+                <span className={styles.rowHeader}>
                   <>Game (Thường)</>
                 </span>
                 <Divider></Divider>
               </div>
             </Col>
             <Col xs={24} sm={12}>
-              <div className="row-data-game">
-                <span className="row-header">
+              <div className={styles.rowDataGame}>
+                <span className={styles.rowHeader}>
                   <p>Game</p>
                   <p>Số dư: 0 xèng</p>
                 </span>
 
-                <div className="panel-body">
-                  <div className="alert-danger">
+                <div className={styles.panelBody}>
+                  <div className={styles.alertDanger}>
                     <p>Hãy đăng nhập để có thể đặt cược nhé</p>
-                    <p className="btn-login">
+                    <p className={styles.btnLogin}>
                       <a
                         href="https://nsocltx.com/dang-nhap"
                         className="btn btn-xs btn-danger"
@@ -552,9 +556,9 @@ function Homepage() {
             </Col>
           </Row>
 
-          <div className="table-response">
+          <div className={styles.tableResponse}>
             <h1 className="">LỊCH SỬ ĐẶT CƯỢC</h1>
-            <Marquee play direction="left" className="marquee">
+            <Marquee play direction="left" className={styles.marquee}>
               <p className="text-[#E60000]">
                 <strong>
                   Lưu ý: Web chỉ sử dụng cho mục đích giải trí và phục vụ nhu
@@ -571,14 +575,15 @@ function Homepage() {
               </p>
             </Marquee>
 
-            <div className="table-data">
+            <div className={styles.tableData}>
               <TableGlobal
-                className="table__disable__paginate"
+                className={styles.table__disable__paginate}
                 total={dataTable.length}
                 columns={columns}
                 dataSource={dataTable}
                 onChangeTable={handleChangeTable}
                 localeString="bản ghi"
+                customFooter={true}
 
                 // loading={false}
               />
@@ -586,8 +591,12 @@ function Homepage() {
           </div>
         </div>
       </div>
+
+      <ModalNotificationHome
+        ref={refModalNotificationHome}
+      ></ModalNotificationHome>
     </>
   );
-}
+};
 
 export default Homepage;
