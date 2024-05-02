@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react';
-import { GetProp, Select, Table, TableProps } from 'antd';
+import React, { useEffect } from "react";
+import { GetProp, Select, Table, TableProps } from "antd";
 import {
   ExpandableConfig,
   FilterValue,
   SorterResult,
   TableRowSelection,
-} from 'antd/es/table/interface';
-import useWindowDimensions from '../../hooks/useWindowDimensions';
-import './index.module.scss';
-import { render, unmountComponentAtNode } from 'react-dom';
+} from "antd/es/table/interface";
+import useWindowDimensions from "../../hooks/useWindowDimensions";
+import styles from "./index.module.scss";
+import { render, unmountComponentAtNode } from "react-dom";
+import classNames from "classnames";
 
-export type ColumnsType<T> = TableProps<T>['columns'];
+export type ColumnsType<T> = TableProps<T>["columns"];
 export type TablePaginationConfig = Exclude<
-  GetProp<TableProps, 'pagination'>,
+  GetProp<TableProps, "pagination">,
   boolean
 >;
 
@@ -40,18 +41,19 @@ interface ITableGlobalProps extends TableProps<Record<string, any>> {
   subtractHeight?: number;
   showQuickJumper?: boolean;
   localeString?: string; // description page
+  customFooter?: boolean; // custom data
 }
 
-export const TABLE_DEFAULT_VALUE = {
-  // defaultPageSize: 10,
+const TABLE_DEFAULT_VALUE = {
+  defaultPageSize: 10,
   showSizeChanger: true,
   hideOnSinglePage: true,
-  pageSizeOptions: ['5', '10', '15', '20'],
+  pageSizeOptions: ["5", "10", "15", "20"],
   showQuickJumper: true,
 };
 
 function TableGlobal({
-  rowKey = 'id',
+  rowKey = "id",
   total,
   columns,
   rowSelection,
@@ -61,83 +63,86 @@ function TableGlobal({
   subtractHeight,
   className,
   showQuickJumper = false,
-  localeString = 'page',
+  localeString = "page",
+  customFooter = false,
   ...props
 }: ITableGlobalProps) {
   const { height } = useWindowDimensions();
 
   const renderPagination = {
     ...TABLE_DEFAULT_VALUE,
-    // total: total ?? 0,
+    total: total ?? 0,
     showQuickJumper: true,
     locale: { items_per_page: localeString },
   };
 
   useEffect(() => {
-    const footerTable = document.querySelector(
-      '.ant-pagination-options-quick-jumper',
-    );
-
-    if (footerTable) {
-      footerTable.innerHTML = ``;
-      const select = document.createElement('div');
-      footerTable.appendChild(select);
-
-      const SelectComponent = (
-        <div className='flex items-center gap-4'>
-          <h1>Hiển thị:</h1>
-          <Select
-            showSearch
-            placeholder='Chọn máy chủ'
-            defaultValue={'Tất cả'}
-            optionFilterProp='children'
-            options={[
-              {
-                value: '0',
-                label: 'Tất cả',
-              },
-              {
-                value: '1',
-                label: 'Theo máy chủ',
-              },
-            ]}
-          />
-        </div>
+    if (customFooter) {
+      const footerTable = document.querySelector(
+        ".ant-pagination-options-quick-jumper"
       );
 
-      render(SelectComponent, select);
+      if (footerTable) {
+        footerTable.innerHTML = ``;
+        const select = document.createElement("div");
+        footerTable.appendChild(select);
 
-      return () => {
-        unmountComponentAtNode(select);
-        footerTable.removeChild(select);
-      };
+        const SelectComponent = (
+          <div className="flex items-center gap-4">
+            <h1>Hiển thị:</h1>
+            <Select
+              showSearch
+              placeholder="Chọn máy chủ"
+              defaultValue={"Tất cả"}
+              optionFilterProp="children"
+              options={[
+                {
+                  value: "0",
+                  label: "Tất cả",
+                },
+                {
+                  value: "1",
+                  label: "Theo máy chủ",
+                },
+              ]}
+            />
+          </div>
+        );
+
+        render(SelectComponent, select);
+
+        return () => {
+          unmountComponentAtNode(select);
+          footerTable.removeChild(select);
+        };
+      }
     }
-  }, []);
+  }, [customFooter]);
 
   return (
     <Table
       showSorterTooltip={false}
-      className={`table-global ${className}`}
+      className={classNames(styles.tableGlobal, className)}
       rowKey={rowKey}
-      size='small'
+      size="small"
       columns={columns}
       rowSelection={
         rowSelection
-          ? { ...rowSelection, fixed: 'left', columnWidth: 50 }
+          ? { ...rowSelection, fixed: "left", columnWidth: 50 }
           : undefined
       }
       expandable={{
         columnWidth: 80,
         ...expandable,
       }}
-      // onChange={(page, filters, sorter) => {
-      //   onChangeTable?.({
-      //     page: page?.current ?? 1,
-      //     pageSize: page?.pageSize ?? renderPagination?.defaultPageSize,
-      //     filters: filters,
-      //     sorter: Array.isArray(sorter) ? sorter : [sorter],
-      //   });
-      // }}
+      onChange={(page, filters, sorter) => {
+        onChangeTable?.({
+          page: page?.current ?? 1,
+          pageSize: page?.pageSize ?? renderPagination?.defaultPageSize,
+          filters: filters,
+          sorter: Array.isArray(sorter) ? sorter : [sorter],
+        });
+      }}
       pagination={renderPagination}
       scroll={{
         scrollToFirstRowOnChange: true,
