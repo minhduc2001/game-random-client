@@ -20,8 +20,8 @@ jobs:
           port: ${{ secrets.SERVER_PORT }}
           script_stop: true
           script: |
-            source ~/.bashrc
-            nvm use 20
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             node -v
             cd /home/minhduc/game-random-client
             git checkout .
