@@ -21,6 +21,7 @@ jobs:
           script_stop: true
           script: |
             source ~/.bashrc
+            nvm use 20
             node -v
             cd /home/minhduc/game-random-client
             git checkout .
