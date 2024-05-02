@@ -22,7 +22,7 @@ jobs:
           script: |
             source ~/.bashrc
             node -v
-            cd /home/minhduc/game-client-random
+            cd /home/minhduc/game-random-client
             git checkout .
             git checkout main
             git pull origin main
