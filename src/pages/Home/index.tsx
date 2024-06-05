@@ -456,7 +456,6 @@ const Homepage = () => {
   useEffect(() => {
     refModalNotificationHome.current.onOpen();
     if (tableParams) {
-      console.log(tableParams);
     }
   }, []);
 
