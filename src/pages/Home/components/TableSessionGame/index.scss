@@ -1,0 +1,59 @@
+.table-session-game {
+  min-width: 100%;
+  padding: 20px;
+
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    margin-bottom: 0;
+    min-width: 100%;
+    text-align: center;
+  }
+
+  tbody {
+    text-align: center;
+  }
+
+  tr {
+    td {
+      display: table-cell;
+      padding: 8px;
+      line-height: 1.42857143;
+      vertical-align: top;
+      border-top: 1px solid #ddd;
+      unicode-bidi: isolate;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+        font-weight: 600;
+      }
+
+      > .turn-num-random {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        gap: 8px;
+
+        svg {
+          height: 20px;
+          animation: rotate_circle 2s linear 0s infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes rotate_circle {
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}

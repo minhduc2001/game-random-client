@@ -11,6 +11,7 @@ import ModalNotificationHome from "./components/ModalNotificationHome";
 import "./index.scss";
 import { Link } from "react-router-dom";
 import useSystemStore from "@/store/system";
+import TableSessionGame from "./components/TableSessionGame";
 
 interface DataType {
   user_id: number | null;
@@ -536,7 +537,8 @@ const Homepage = () => {
                 <span className="row-header">
                   <>Game (Thường)</>
                 </span>
-                <Divider></Divider>
+
+                <TableSessionGame />
               </div>
             </Col>
             <Col xs={24} sm={12}>
@@ -556,6 +558,24 @@ const Homepage = () => {
                       </Link>
                     </p>
                   </div>
+
+                  <div className="form-group">
+                    <div className="input-group">
+                      <input
+                        type="text"
+                        name="money"
+                        className="form-control"
+                        placeholder="Số xu"
+                        aria-describedby="basic-addon2"
+                        disabled
+                      />
+                      <span className="input-group-addon" id="basic-addon2">
+                        xu
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="game-type-panel"></div>
                 </div>
               </div>
             </Col>
@@ -567,7 +587,7 @@ const Homepage = () => {
               <p className="text-[#E60000]">
                 <strong>
                   Lưu ý: Web chỉ sử dụng cho mục đích giải trí và phục vụ nhu
-                  cầu tìm hiểu học hỏi về website socket, ...{" "}
+                  cầu tìm hiểu học hỏi về website socket, ...
                 </strong>
               </p>
 
@@ -580,17 +600,15 @@ const Homepage = () => {
               </p>
             </Marquee>
 
-            <div className={"table-data"}>
+            <div className="table-data">
               <TableGlobal
-                className={"table__disable__paginate"}
+                className="table__disable__paginate"
                 total={dataTable.length}
                 columns={columns}
                 dataSource={dataTable}
                 onChangeTable={handleChangeTable}
                 localeString="bản ghi"
                 customFooter={true}
-
-                // loading={false}
               />
             </div>
           </div>
