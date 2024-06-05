@@ -1,54 +1,52 @@
 .table__disable__paginate {
-  :global {
-    .ant-pagination-prev {
-      display: none !important;
+  .ant-pagination-prev {
+    display: none !important;
+  }
+
+  .ant-pagination-item {
+    display: none !important;
+  }
+
+  .ant-pagination-next {
+    display: none;
+  }
+
+  .ant-pagination-options {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+
+    gap: 12px;
+    .ant-select {
+      height: 34px;
     }
 
-    .ant-pagination-item {
-      display: none !important;
+    .ant-select-selector {
+      // height: 34px;
+      padding: 15px 20px !important;
+      width: 200px !important;
+
+      display: flex !important;
+      align-items: center !important;
     }
 
-    .ant-pagination-next {
-      display: none;
+    .ant-select-arrow {
+      color: #111;
     }
 
-    .ant-pagination-options {
-      display: flex;
-      width: 100%;
-      justify-content: flex-end;
-      flex-wrap: wrap;
-
-      gap: 12px;
-      .ant-select {
-        height: 34px;
-      }
-
-      .ant-select-selector {
-        // height: 34px;
-        padding: 15px 20px !important;
-        width: 200px !important;
-
-        display: flex !important;
-        align-items: center !important;
-      }
-
-      .ant-select-arrow {
-        color: #111;
-      }
-
-      .ant-select-selection-search {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        padding: 0 4px;
-      }
-    }
-
-    .ant-pagination-options-quick-jumper {
-      height: 34px !important;
+    .ant-select-selection-search {
+      height: 100%;
       display: flex;
       align-items: center;
+      padding: 0 4px;
     }
+  }
+
+  .ant-pagination-options-quick-jumper {
+    height: 34px !important;
+    display: flex;
+    align-items: center;
   }
 }
 
