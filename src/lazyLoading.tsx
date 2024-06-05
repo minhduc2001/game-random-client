@@ -1,6 +1,6 @@
 import React from "react";
 
-import Homepage from "./pages/Home";
+const Homepage = React.lazy(() => import("./pages/Home"));
 const LoginPage = React.lazy(() => import("./pages/Login"));
 
 const PageNotFound = React.lazy(() => import("./pages/404"));
