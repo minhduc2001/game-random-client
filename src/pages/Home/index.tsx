@@ -526,7 +526,7 @@ const Homepage = () => {
       <div className="home">
         <div className="content">
           <div></div>
-          <div className="group-btn">
+          <div className="group-btn mb-5">
             <Button>Xem hướng dẫn</Button>
             <Button>Nhóm Zalo</Button>
           </div>

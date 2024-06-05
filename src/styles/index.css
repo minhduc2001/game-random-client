@@ -80,6 +80,7 @@ textarea {
   line-height: inherit;
 }
 
+/* button */
 .btn {
   display: inline-block;
   margin-bottom: 0;
@@ -185,4 +186,9 @@ textarea {
   color: #fff;
   background-color: #ed9c28;
   border-color: #d58512;
+}
+
+/* text */
+.text-danger {
+  color: #a94442;
 }

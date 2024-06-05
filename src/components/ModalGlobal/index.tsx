@@ -52,7 +52,7 @@ function ModalGlobal(props: IModalGlobalProps): JSX.Element {
       destroyOnClose
       className={classNames(styles.modalGlobal, className)}
       centered
-      title={<div style={{ fontSize: "24px", color: "#a94442" }}>{title}</div>}
+      title={title}
       width={width}
       open={open}
       onOk={onOk}
