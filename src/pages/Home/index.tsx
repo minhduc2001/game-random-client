@@ -1,4 +1,4 @@
-import { Button, Col, Divider, Row, TableColumnsType } from "antd";
+import { Button, Col, Row, TableColumnsType } from "antd";
 import Helmet from "../../components/Helmet";
 
 import { MdLogin } from "react-icons/md";
