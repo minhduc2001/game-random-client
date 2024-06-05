@@ -7,8 +7,10 @@ import { useEffect, useRef, useState } from "react";
 import TableGlobal, {
   IChangeTable,
 } from "../../components/TableGlobal/TableGlobal";
-import styles from "./index.module.scss";
 import ModalNotificationHome from "./components/ModalNotificationHome";
+import "./index.scss";
+import { Link } from "react-router-dom";
+import useSystemStore from "@/store/system";
 
 interface DataType {
   user_id: number | null;
@@ -453,8 +455,15 @@ const Homepage = () => {
 
   const refModalNotificationHome: any = useRef();
 
+  const { isRenderNotificationHome, setRenderNotificationHome } =
+    useSystemStore((state) => state);
+
   useEffect(() => {
-    refModalNotificationHome.current.onOpen();
+    if (isRenderNotificationHome) {
+      refModalNotificationHome.current.onOpen();
+      setRenderNotificationHome();
+    }
+
     if (tableParams) {
     }
   }, []);
@@ -512,42 +521,39 @@ const Homepage = () => {
   };
 
   return (
-    <>
+    <div className="home-container">
       <Helmet title="Trang chủ" description="Hệ thống chơi game" />
-      <div className={styles.home}>
-        <div className={styles.content}>
+      <div className="home">
+        <div className="content">
           <div></div>
-          <div className={styles.groupBtn}>
+          <div className="group-btn">
             <Button>Xem hướng dẫn</Button>
             <Button>Nhóm Zalo</Button>
           </div>
-          <Row gutter={[12, 55]} className={styles.rowData} wrap>
+          <Row gutter={[12, 55]} className="row-data" wrap>
             <Col xs={24} sm={12}>
-              <div className={styles.rowDataGame}>
-                <span className={styles.rowHeader}>
+              <div className="row-data-game">
+                <span className="row-header">
                   <>Game (Thường)</>
                 </span>
                 <Divider></Divider>
               </div>
             </Col>
             <Col xs={24} sm={12}>
-              <div className={styles.rowDataGame}>
-                <span className={styles.rowHeader}>
+              <div className="row-data-game">
+                <span className="row-header">
                   <p>Game</p>
                   <p>Số dư: 0 xèng</p>
                 </span>
 
-                <div className={styles.panelBody}>
-                  <div className={styles.alertDanger}>
+                <div className="panel-body">
+                  <div className="alert-danger">
                     <p>Hãy đăng nhập để có thể đặt cược nhé</p>
-                    <p className={styles.btnLogin}>
-                      <a
-                        href="https://nsocltx.com/dang-nhap"
-                        className="btn btn-xs btn-danger"
-                      >
+                    <p className="btn-login">
+                      <Link to="/dang-nhap" className="btn btn-xs btn-danger">
                         <MdLogin />
                         &nbsp;&nbsp;Đăng nhập
-                      </a>
+                      </Link>
                     </p>
                   </div>
                 </div>
@@ -555,9 +561,9 @@ const Homepage = () => {
             </Col>
           </Row>
 
-          <div className={styles.tableResponse}>
+          <div className="table-response">
             <h1 className="">LỊCH SỬ ĐẶT CƯỢC</h1>
-            <Marquee play direction="left" className={styles.marquee}>
+            <Marquee play direction="left" className="marquee">
               <p className="text-[#E60000]">
                 <strong>
                   Lưu ý: Web chỉ sử dụng cho mục đích giải trí và phục vụ nhu
@@ -574,9 +580,9 @@ const Homepage = () => {
               </p>
             </Marquee>
 
-            <div className={styles.tableData}>
+            <div className={"table-data"}>
               <TableGlobal
-                className={styles.table__disable__paginate}
+                className={"table__disable__paginate"}
                 total={dataTable.length}
                 columns={columns}
                 dataSource={dataTable}
@@ -594,7 +600,7 @@ const Homepage = () => {
       <ModalNotificationHome
         ref={refModalNotificationHome}
       ></ModalNotificationHome>
-    </>
+    </div>
   );
 };
 

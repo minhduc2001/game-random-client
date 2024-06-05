@@ -1,7 +1,7 @@
 import ModalGlobal from "@/components/ModalGlobal";
 import { Form } from "antd";
 import { forwardRef, useCallback, useImperativeHandle, useState } from "react";
-import styles from "./index.module.scss";
+import "./index.scss";
 
 const ModalNotificationHome = (_: any, ref: any) => {
   const [form] = Form.useForm();
@@ -29,7 +29,7 @@ const ModalNotificationHome = (_: any, ref: any) => {
         open={visible}
         title={"Thông báo"}
         width={500}
-        className={styles.modalNotificationHome}
+        className="modal-notification-home"
       >
         <div></div>
       </ModalGlobal>

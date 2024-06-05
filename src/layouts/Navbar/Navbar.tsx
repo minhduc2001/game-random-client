@@ -41,18 +41,15 @@ function Navbar() {
   ];
 
   const active = useMemo(() => {
+    if (location.pathname == "/") return "/trang-chu";
     return location.pathname;
-  }, [location]);
+  }, [location.pathname]);
 
   return (
     <>
       <div className="navbar">
         <div className="container">
-          <Menu
-            mode="horizontal"
-            items={items}
-            defaultSelectedKeys={[active]}
-          />
+          <Menu mode="horizontal" items={items} selectedKeys={[active]} />
         </div>
       </div>
     </>
