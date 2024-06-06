@@ -1,7 +1,6 @@
 .register-container {
-  // padding: 30px 30px;
-  // height: 400px;
-  width: 670px;
+  max-width: 670px;
+  width: 100%;
 
   .content-header {
     padding-bottom: 0.5em;
@@ -73,6 +72,20 @@
 
     button {
       outline: none;
+    }
+
+    @media (max-width: 576px) {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    @media (max-width: 469px) {
+      .form-group:first-child {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+      }
     }
   }
 }

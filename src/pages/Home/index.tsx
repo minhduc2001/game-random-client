@@ -526,7 +526,7 @@ const Homepage = () => {
       <Helmet title="Trang chủ" description="Hệ thống chơi game" />
       <div className="home">
         <div className="content">
-          <div></div>
+          <div className="py-5"></div>
           <div className="group-btn mb-5">
             <Button>Xem hướng dẫn</Button>
             <Button>Nhóm Zalo</Button>

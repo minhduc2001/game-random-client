@@ -19,6 +19,7 @@ body {
 
 ::-webkit-scrollbar {
   width: 1px; /* Độ rộng của thanh trượt */
+  height: 1px;
 }
 
 ::-webkit-scrollbar-thumb {

@@ -15,7 +15,7 @@ function LayoutWrapper() {
         <Outlet></Outlet>
       </Content>
 
-      <Footer />
+      {/* <Footer /> */}
     </Layout>
   );
 }
