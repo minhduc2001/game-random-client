@@ -8,4 +8,16 @@ export default defineConfig({
   resolve: {
     alias: [{ find: "@", replacement: path.resolve(__dirname, "src") }],
   },
+  build: {
+    outDir: "dist",
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+      },
+    },
+  },
+  base: "./",
+  server: {
+    port: 5173,
+  },
 });
