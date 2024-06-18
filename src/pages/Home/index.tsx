@@ -12,6 +12,7 @@ import "./index.scss";
 import { Link } from "react-router-dom";
 import useSystemStore from "@/store/system";
 import TableSessionGame from "./components/TableSessionGame";
+import useWebSocketStore from "@/store/socket";
 
 interface DataType {
   user_id: number | null;
@@ -458,6 +459,8 @@ const Homepage = () => {
 
   const { isRenderNotificationHome, setRenderNotificationHome } =
     useSystemStore((state) => state);
+
+  const socket = useWebSocketStore((state) => state.socket);
 
   useEffect(() => {
     if (isRenderNotificationHome) {

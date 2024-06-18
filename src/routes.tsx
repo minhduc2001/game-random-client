@@ -11,7 +11,15 @@ interface SuspenseWrapperProps {
 
 const SuspenseWrapper = (props: SuspenseWrapperProps) => {
   return (
-    <React.Suspense fallback={<Spinner />}>{props.children}</React.Suspense>
+    <React.Suspense
+      fallback={
+        <div className="root_loading">
+          <Spinner />
+        </div>
+      }
+    >
+      {props.children}
+    </React.Suspense>
   );
 };
 

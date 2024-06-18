@@ -75,7 +75,7 @@
     overflow: auto;
     height: 0px;
     transition: height 200ms ease-out;
-    visibility: hidden;
+    border-top: 1px solid #7c4427;
 
     a,
     li,
@@ -93,11 +93,12 @@
     }
 
     &.collabsed {
-      visibility: visible;
-      height: 224px;
+      height: 225px;
       transition: height 200ms ease-in;
 
-      border-top: 1px solid #7c4427;
+      @media (min-width: 768px) {
+        display: none;
+      }
     }
   }
 

@@ -48,6 +48,14 @@
     display: flex;
     align-items: center;
   }
+
+  .ant-pagination .ant-pagination-options-quick-jumper input:focus-within {
+    box-shadow: none;
+  }
+
+  .ant-select-selection-search-input {
+    caret-color: transparent;
+  }
 }
 
 .home-container {

@@ -2,15 +2,35 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import "./index.scss";
 import { Link } from "react-router-dom";
+import { Form, FormProps } from "antd";
+import { useMutation } from "@tanstack/react-query";
+import { POST } from "@/api/api";
+
+type FieldTypeRegister = {
+  username: string;
+  password: string;
+  full_name: string;
+  email: string;
+};
 
 function Register() {
+  const registerMutation = useMutation({
+    mutationFn: (data: FieldTypeRegister) => {
+      return POST("/register", data);
+    },
+  });
+
+  const onFinish: FormProps<FieldTypeRegister>["onFinish"] = (values) => {
+    console.log(values);
+  };
+
   return (
     <div className="register-container">
       <div className="content-header">
         <h2 className="content-header-title">Đăng Ký Tài Khoản</h2>
       </div>
       <div className="row p-[23px] pb-0">
-        <form method="post" action="" className="text-center">
+        <Form className="text-center" onFinish={onFinish}>
           <div className="form-group">
             <a
               href="https://nsocltx.com/login/facebook"
@@ -28,50 +48,72 @@ function Register() {
             </a>
           </div>
           <div className="mb-3">hoặc tạo tài khoản</div>
-          <div className="form-group">
+          <Form.Item
+            className="form-group"
+            name={"username"}
+            rules={[
+              { required: true, message: "Tên tài khoản không được để trống!" },
+            ]}
+          >
             <input
               type="text"
               className="form-control"
               name="username"
               placeholder="Tên tài khoản"
             />
-          </div>
-          <div className="form-group">
+          </Form.Item>
+          <Form.Item
+            className="form-group"
+            name={"full_name"}
+            rules={[{ required: true, message: "Họ tên không được để trống!" }]}
+          >
             <input
               type="text"
               className="form-control"
               name="full_name"
               placeholder="Họ tên"
             />
-          </div>
-          <div className="form-group">
+          </Form.Item>
+          <Form.Item
+            className="form-group"
+            name={"email"}
+            rules={[{ required: true, message: "Email không được để trống!" }]}
+          >
             <input
               type="text"
               className="form-control"
               name="email"
               placeholder="Email"
             />
-          </div>
+          </Form.Item>
 
-          <div className="form-group">
+          <Form.Item
+            className="form-group"
+            name={"password"}
+            rules={[
+              { required: true, message: "Password không được để trống!" },
+            ]}
+          >
             <input
               type="password"
               className="form-control"
               name="password"
               placeholder="Mật khẩu"
             />
-          </div>
-          <div className="form-group">
+          </Form.Item>
+          <Form.Item className="form-group" name={"password_confirmation"}>
             <input
               type="password"
               className="form-control"
               name="password_confirmation"
               placeholder="Xác nhận mật khẩu"
             />
-          </div>
+          </Form.Item>
 
           <div className="form-group">
-            <button className="btn btn-info mr-0">Tạo tài khoản</button>
+            <button className="btn btn-info mr-0" type="submit">
+              Tạo tài khoản
+            </button>
           </div>
           <div className="row text-center m-3">---- hoặc ----</div>
           <div className="form-group">
@@ -82,7 +124,7 @@ function Register() {
               Quên mật khẩu?
             </a>
           </div>
-        </form>
+        </Form>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "public/electron.js",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode development",
     "buildDev": "tsc && vite build --mode development",
     "buildStaging": "tsc && vite build --mode staging",
     "buildProd": "tsc && vite build --mode production",
@@ -51,6 +51,7 @@
     "react-helmet": "^6.1.0",
     "react-icons": "^5.0.1",
     "react-router-dom": "^6.22.3",
+    "socket.io-client": "^4.7.5",
     "zustand": "^4.5.2"
   },
   "devDependencies": {

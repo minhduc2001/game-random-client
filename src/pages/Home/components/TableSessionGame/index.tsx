@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImSpinner } from "react-icons/im";
 import "./index.scss";
 import ResultTag from "../ResultTag";
 import IconResult from "../IconResult";
+import useWebSocketStore from "@/store/socket";
+import { convertSecondsToTime } from "@/utils/function";
 
 function TableSessionGame() {
+  const dataSocket = useWebSocketStore((state) => state);
+
+  useEffect(() => {
+    dataSocket.socket.on("countdown", (data) => {
+      dataSocket.setTime(data.time);
+    });
+  }, []);
+
   return (
     <div className="table-session-game">
       <table>
@@ -15,7 +25,7 @@ function TableSessionGame() {
           </tr>
           <tr>
             <td>Thời gian:</td>
-            <td>#12114556</td>
+            <td>{convertSecondsToTime(dataSocket.time)}</td>
           </tr>
           <tr>
             <td>Xu đặt ván này:</td>

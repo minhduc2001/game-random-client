@@ -52,10 +52,10 @@ function Header() {
         <div className="navbar-header">
           <a className="#" href="/">
             <div className="div-image">
-              <img
+              {/* <img
                 src="https://nsocltx.com/assets/images/logo-nsocltx.com.png"
                 alt="NSOCLTX.COM Logo"
-              />
+              /> */}
             </div>
           </a>
           <Badge count={5}>
