@@ -4,16 +4,16 @@ import "./index.scss";
 import ResultTag from "../ResultTag";
 import IconResult from "../IconResult";
 import useWebSocketStore from "@/store/socket";
-import { convertSecondsToTime } from "@/utils/function";
+import { convertSecondsToTime, sumDigits } from "@/utils/function";
 
 function TableSessionGame() {
   const dataSocket = useWebSocketStore((state) => state);
 
-  useEffect(() => {
-    dataSocket.socket.on("countdown", (data) => {
-      dataSocket.setTime(data.time);
-    });
-  }, []);
+  // useEffect(() => {
+  //   dataSocket.socket.on("countdown", (data) => {
+  //     dataSocket.setTime(data.time);
+  //   });
+  // }, []);
 
   return (
     <div className="table-session-game">
@@ -21,51 +21,59 @@ function TableSessionGame() {
         <tbody>
           <tr>
             <td>Mã phiên:</td>
-            <td>#12114556</td>
+            <td>#{dataSocket.sessionResult?.data?.id}</td>
           </tr>
           <tr>
             <td>Thời gian:</td>
-            <td>{convertSecondsToTime(dataSocket.time)}</td>
+            <td>{convertSecondsToTime(dataSocket?.sessionResult?.time)}</td>
           </tr>
           <tr>
             <td>Xu đặt ván này:</td>
             <td className="text-danger">
-              <b>47698</b>
+              <b>{dataSocket.sessionResult?.data?.coin}</b>
             </td>
           </tr>
           <tr>
             <td>Xu đặt ván trước:</td>
-            <td>81690</td>
+            <td>{dataSocket.sessionResult?.data?.coin_prev}</td>
           </tr>
           <tr>
             <td>Số tỉ lệ thắng:</td>
-            <td>19.2155%</td>
+            <td>{dataSocket.sessionResult?.data?.res_percent}</td>
           </tr>
           <tr>
             <td>Số ngẫu nhiên:</td>
             <td>
-              <span className="turn-num-random">
-                <ImSpinner />
-                (hiển thị ở giây 13)
-              </span>
-              {/* <ImSpinner />
-              (hiển thị ở giây 13) */}
+              {dataSocket.sessionResult?.data?.coin_random ? (
+                `${dataSocket.sessionResult.data?.coin_random}`
+              ) : (
+                <span className="turn-num-random">
+                  <ImSpinner />
+                  (hiển thị ở giây 13)
+                </span>
+              )}
             </td>
           </tr>
           <tr>
             <td>Tổng:</td>
-            <td>744669884</td>
+            <td>{dataSocket.sessionResult?.data?.coin_prev_total ?? 0}</td>
           </tr>
           <tr>
             <td>Kết quả cộng:</td>
-            <td>7+4+4+6+6+9+8+8+4=56</td>
+            <td>
+              {sumDigits(dataSocket.sessionResult?.data?.coin_prev_total)}
+            </td>
           </tr>
           <tr>
             <td>Kết quả:</td>
             <td>
-              <ResultTag type="c" />
+              <ResultTag
+                type={dataSocket.sessionResult?.data?.res_cl ? "c" : "d"}
+              />
               &nbsp;&nbsp;
-              <ResultTag type="k" />
+              <ResultTag
+                type={dataSocket.sessionResult?.data?.res_tx ? "t" : "k"}
+              />
             </td>
           </tr>
         </tbody>
@@ -75,29 +83,17 @@ function TableSessionGame() {
           <tr>
             <td>CD:</td>
             <td>
-              <IconResult type="c" />
-              <IconResult type="c" />
-              <IconResult type="c" />
-              <IconResult type="d" />
-              <IconResult type="c" />
-              <IconResult type="d" />
-              <IconResult type="d" />
-              <IconResult type="d" />
-              <IconResult type="c" />
+              {dataSocket.sessionResult.res_cl?.map((v, index) => {
+                return <IconResult type={v} key={index} />;
+              })}
             </td>
           </tr>
           <tr>
             <td>TK:</td>
             <td>
-              <IconResult type="t" />
-              <IconResult type="t" />
-              <IconResult type="k" />
-              <IconResult type="k" />
-              <IconResult type="t" />
-              <IconResult type="k" />
-              <IconResult type="k" />
-              <IconResult type="k" />
-              <IconResult type="t" />
+              {dataSocket.sessionResult.res_tx?.map((v, index) => {
+                return <IconResult type={v} key={index} />;
+              })}
             </td>
           </tr>
         </tbody>
