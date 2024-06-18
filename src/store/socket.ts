@@ -31,7 +31,13 @@ interface WebSocketState {
 }
 
 const useWebSocketStore = create<WebSocketState>((set, get) => {
-  const socket = io(import.meta.env.VITE_DEV_SERVER_URL);
+  const socket = io(import.meta.env.VITE_DEV_SERVER_URL, {
+    reconnection: true,
+    reconnectionAttempts: Infinity,
+    reconnectionDelay: 1000,
+    reconnectionDelayMax: 5000,
+    randomizationFactor: 0.5,
+  });
 
   socket.on("connect", () => {
     console.log("Connected to WebSocket server");
@@ -48,7 +54,13 @@ const useWebSocketStore = create<WebSocketState>((set, get) => {
   });
 
   socket.on("res", (result) => {
-    set({ sessionResult: { res_cl: result.res_cl, res_tx: result.res_tx } });
+    set({
+      sessionResult: {
+        ...get().sessionResult,
+        res_cl: result.res_cl,
+        res_tx: result.res_tx,
+      },
+    });
   });
 
   return {
