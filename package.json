@@ -5,7 +5,7 @@
   "type": "module",
   "main": "public/electron.js",
   "scripts": {
-    "dev": "vite --mode development",
+    "dev": "vite",
     "buildDev": "tsc && vite build --mode development",
     "buildStaging": "tsc && vite build --mode staging",
     "buildProd": "tsc && vite build --mode production",
