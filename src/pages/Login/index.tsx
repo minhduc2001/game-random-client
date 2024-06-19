@@ -4,6 +4,9 @@ import "./index.scss";
 import { Link } from "react-router-dom";
 import { Form, FormProps } from "antd";
 import useSystemStore from "@/store/login";
+import { useMutation } from "@tanstack/react-query";
+import { POST } from "@/api/api";
+import useUserStore from "@/store/user";
 
 type FieldTypeLogin = {
   username: string;
@@ -20,10 +23,24 @@ function Login() {
     removeInfoLogin,
   } = useSystemStore((state) => state);
 
+  const { setToken } = useUserStore((state) => state);
+
+  const loginMutation = useMutation({
+    mutationFn: (data: FieldTypeLogin) => {
+      return POST<ResponseForm<LoginResponse>>("auth/login", data);
+    },
+  });
+
   const onFinish: FormProps<FieldTypeLogin>["onFinish"] = (values) => {
     if (rememberPassword) {
       setInfoLogin(values.username, values.password);
     } else removeInfoLogin();
+
+    loginMutation.mutate(values, {
+      onSuccess(data) {
+        setToken(data.data);
+      },
+    });
   };
 
   return (

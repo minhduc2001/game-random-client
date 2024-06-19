@@ -41,3 +41,15 @@ interface ErrorResponse {
   message?: string;
   errorCode?: string;
 }
+
+interface ResponseForm<T> {
+  data: T;
+  message: string;
+  status: number;
+  success: boolean;
+}
+
+interface LoginResponse {
+  access_token: string;
+  refresh_token: string;
+}

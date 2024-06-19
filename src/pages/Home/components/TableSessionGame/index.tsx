@@ -68,11 +68,11 @@ function TableSessionGame() {
             <td>Kết quả:</td>
             <td>
               <ResultTag
-                type={dataSocket.sessionResult?.data?.res_cl ? "c" : "d"}
+                type={dataSocket.sessionResult?.res_cl?.[0] ?? 'c'}
               />
               &nbsp;&nbsp;
               <ResultTag
-                type={dataSocket.sessionResult?.data?.res_tx ? "t" : "k"}
+                type={dataSocket.sessionResult?.res_tx?.[0] ?? 't'}
               />
             </td>
           </tr>

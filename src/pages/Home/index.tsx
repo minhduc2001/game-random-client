@@ -13,6 +13,10 @@ import { Link } from "react-router-dom";
 import useSystemStore from "@/store/system";
 import TableSessionGame from "./components/TableSessionGame";
 import useWebSocketStore from "@/store/socket";
+import { useQuery } from "@tanstack/react-query";
+import { GET } from "@/api/api";
+import useUserStore, { UserState } from "@/store/user";
+import useLogin from "@/hooks/useLogin";
 
 interface DataType {
   user_id: number | null;
@@ -459,8 +463,23 @@ const Homepage = () => {
 
   const { isRenderNotificationHome, setRenderNotificationHome } =
     useSystemStore((state) => state);
+  const { createUser } = useUserStore((state) => state);
+  const isLogin = useLogin();
 
-  const socket = useWebSocketStore((state) => state.socket);
+  const { data, refetch } = useQuery({
+    queryKey: ["get_me"],
+    queryFn: () => {
+      return GET<ResponseForm<UserState>>("user/get-me");
+    },
+    enabled: false,
+  });
+
+  useEffect(() => {
+    if (isLogin)
+      refetch().then(() => {
+        if (data?.data) createUser(data.data);
+      });
+  }, []);
 
   useEffect(() => {
     if (isRenderNotificationHome) {
@@ -552,25 +571,31 @@ const Homepage = () => {
                 </span>
 
                 <div className="panel-body">
-                  <div className="alert-danger">
-                    <p>Hãy đăng nhập để có thể đặt cược nhé</p>
-                    <p className="btn-login">
-                      <Link to="/dang-nhap" className="btn btn-xs btn-danger">
-                        <MdLogin />
-                        &nbsp;&nbsp;Đăng nhập
-                      </Link>
-                    </p>
-                  </div>
+                  {isLogin ? (
+                    <div className="alert-info">
+                      <p>Nhập số tiền hoặc số xu muốn đặt</p>
+                    </div>
+                  ) : (
+                    <div className="alert-danger">
+                      <p>Hãy đăng nhập để có thể đặt cược nhé</p>
+                      <p className="btn-login">
+                        <Link to="/dang-nhap" className="btn btn-xs btn-danger">
+                          <MdLogin />
+                          &nbsp;&nbsp;Đăng nhập
+                        </Link>
+                      </p>
+                    </div>
+                  )}
 
                   <div className="form-group">
                     <div className="input-group">
                       <input
-                        type="text"
+                        type="number"
                         name="money"
                         className="form-control"
                         placeholder="Số xu"
                         aria-describedby="basic-addon2"
-                        disabled
+                        disabled={!isLogin}
                       />
                       <span className="input-group-addon" id="basic-addon2">
                         xu

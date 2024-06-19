@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Form, FormProps } from "antd";
 import { useMutation } from "@tanstack/react-query";
 import { POST } from "@/api/api";
+import useUserStore from "@/store/user";
 
 type FieldTypeRegister = {
   username: string;
@@ -14,14 +15,22 @@ type FieldTypeRegister = {
 };
 
 function Register() {
+  const { setToken } = useUserStore((state) => state);
+
   const registerMutation = useMutation({
     mutationFn: (data: FieldTypeRegister) => {
-      return POST("/register", data);
+      return POST<ResponseForm<LoginResponse>>("auth/register", data);
     },
   });
 
   const onFinish: FormProps<FieldTypeRegister>["onFinish"] = (values) => {
-    console.log(values);
+    registerMutation.mutate(values, {
+      onSuccess(data) {
+        if (data.data) {
+          setToken(data.data);
+        }
+      },
+    });
   };
 
   return (

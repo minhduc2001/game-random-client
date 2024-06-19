@@ -44,23 +44,21 @@ const useWebSocketStore = create<WebSocketState>((set, get) => {
   });
 
   socket.on("countdown", (result) => {
-    set({
+    set(() => ({
       sessionResult: {
         ...get().sessionResult,
-        data: result.data,
-        time: result.time,
+        ...result,
       },
-    });
+    }));
   });
 
   socket.on("res", (result) => {
-    set({
+    set(() => ({
       sessionResult: {
         ...get().sessionResult,
-        res_cl: result.res_cl,
-        res_tx: result.res_tx,
+        ...result,
       },
-    });
+    }));
   });
 
   return {

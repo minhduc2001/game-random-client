@@ -22,10 +22,11 @@ async function axiosInstance(): Promise<AxiosInstance> {
 
   instance.interceptors.request.use(
     async (config: InternalAxiosRequestConfig) => {
-      if (localStorage.getItem("token")) {
-        config.headers["Authorization"] = `Bearer ${JSON.parse(
-          localStorage.getItem("token") ?? ""
-        )}`;
+      const access_token = JSON.parse(localStorage.getItem("user-store") ?? "")
+        ?.state?.access_token;
+
+      if (access_token) {
+        config.headers["Authorization"] = `Bearer ${access_token}`;
       }
       return config;
     },
